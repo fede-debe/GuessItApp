@@ -23,9 +23,6 @@ class GameViewModel: ViewModel() {
 
     private val timer: CountDownTimer
 
-    private val newTime: Long
-
-
     // The current word
     private val _word = MutableLiveData<String>()
     val word: LiveData<String>
@@ -55,10 +52,6 @@ class GameViewModel: ViewModel() {
         nextWord()
         _word.value = ""
         _score.value = 0
-        _eventGameFinished.value = false
-        newTime = COUNTDOWN_TIME
-
-
 
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
             override fun onTick(millisUntilFinished: Long) {
@@ -71,14 +64,6 @@ class GameViewModel: ViewModel() {
             }
         }
         timer.start()
-
-        DateUtils.formatElapsedTime(newTime)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        timer.cancel()
-        Log.i("GameViewModel", "GameViewModel destroyed!")
     }
 
     /**
@@ -135,6 +120,12 @@ class GameViewModel: ViewModel() {
     }
 
     fun onGameFinishComplete(){
-        _currentTime.value = DONE
+        _eventGameFinished.value = false
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        timer.cancel()
+        Log.i("GameViewModel", "GameViewModel destroyed!")
     }
 }
