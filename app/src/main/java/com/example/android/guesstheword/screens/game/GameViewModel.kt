@@ -50,7 +50,6 @@ class GameViewModel: ViewModel() {
         Log.i("GameViewModel", "GameViewModel created!")
         resetList()
         nextWord()
-        _word.value = ""
         _score.value = 0
 
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
