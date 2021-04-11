@@ -55,7 +55,7 @@ class GameFragment : Fragment() {
 
         // binding data between XML file and ViewModel without the UI controller
         binding.gameViewModel = viewModel
-
+        binding.lifecycleOwner = this@GameFragment
 //        binding.correctButton.setOnClickListener {
 //            viewModel.onCorrect()
 //        }
@@ -63,13 +63,13 @@ class GameFragment : Fragment() {
 //            viewModel.onSkip()
 //        }
 
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
+//        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
+//            binding.scoreText.text = newScore.toString()
+//        })
 
-        viewModel.word.observe(viewLifecycleOwner, Observer{ newWord ->
-            binding.wordText.text = newWord
-        })
+//        viewModel.word.observe(viewLifecycleOwner, Observer{ newWord ->
+//            binding.wordText.text = newWord
+//        })
 
         viewModel.currentTime.observe(viewLifecycleOwner, Observer { newTime ->
             binding.timerText.text = DateUtils.formatElapsedTime(newTime)
